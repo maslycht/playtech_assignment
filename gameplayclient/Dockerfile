@@ -6,4 +6,4 @@ COPY src /usr/local/gameplayclient/src
 WORKDIR /usr/local/gameplayclient
 RUN mvn package
 
-CMD ["java","-jar","target/gameplayclient-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","target/gameplayclient-0.0.1-SNAPSHOT.jar"]
