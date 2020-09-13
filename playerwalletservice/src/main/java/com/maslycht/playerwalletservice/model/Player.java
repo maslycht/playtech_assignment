@@ -1,5 +1,8 @@
 package com.maslycht.playerwalletservice.model;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Player {
     private final String username;
     private int balanceVersion;
@@ -28,13 +31,14 @@ public class Player {
     }
 
     public boolean changeBalance(double balanceChange) {
-        // FIXME: decimal precision
-        double newBalance = this.balance + balanceChange;
-        if (newBalance < 0) {
+        BigDecimal newBalance = BigDecimal.valueOf(this.balance)
+                .add(BigDecimal.valueOf(balanceChange))
+                .setScale(2, RoundingMode.HALF_UP);
+        if (newBalance.compareTo(BigDecimal.ZERO) < 0) {
             return false;
         }
 
-        this.balance = newBalance;
+        this.balance = newBalance.doubleValue();
         this.balanceVersion++;
         return true;
     }
