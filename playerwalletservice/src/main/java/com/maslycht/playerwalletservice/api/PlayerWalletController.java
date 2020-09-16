@@ -14,7 +14,6 @@ public class PlayerWalletController {
     private final PlayerWalletService playerWalletService;
     private final TransactionResponseService transactionResponseService;
 
-    // [REQUEST][{userNmae}][{transactionId}] transaction for amount {}
     public PlayerWalletController(
             PlayerWalletService playerWalletService,
             TransactionResponseService transactionResponseService
